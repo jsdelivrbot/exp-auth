@@ -9,6 +9,7 @@ import reducers from './reducers';
 
 import Header from './components/header';
 import SignIn from './components/auth/signin';
+import SignOut from './components/auth/signout';
 import Dashboard from './components/dashboard';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Header />
         <Switch>
           <Route path="/signin" component={SignIn} />
+          <Route path="/signout" component={SignOut} />
           <Route path="/dashboard" component={Dashboard} />
         </Switch>
       </div>
