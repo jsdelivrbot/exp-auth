@@ -1,0 +1,16 @@
+.signin.hidden,
+.signup.hidden,
+.signout {
+  display: none;
+}
+
+.signin,
+.signup,
+.signout.show {
+  display: inline-block;
+}
+
+a.selected {
+  color: grey;
+  font-weight: bold;
+}
