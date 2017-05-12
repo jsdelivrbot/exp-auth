@@ -18,14 +18,16 @@ class SignIn extends Component {
     );
   }
 
-  render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { handleSubmit } = this.props;
+  renderAlert() {
+    if (this.props.errorMsg) {
+      return (
+        <div className="alert alert-danger">{this.props.errorMsg}</div>
+      );
+    }
+  }
 
-    /*if (this.props.authenticated) {
-      console.log(this);
-      this.props.history.push('/dashboard');
-    }*/
+  render() {
+    const { handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
@@ -42,7 +44,7 @@ class SignIn extends Component {
           label="Password"
           component={this.renderTextInput}
         />
-
+        {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Sign In</button>
       </form>
     );
@@ -54,7 +56,7 @@ const signinForm = reduxForm({ form: 'signinForm' })(SignIn);
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.auth.authenticated
+    errorMsg: state.auth.error
   };
 }
 
