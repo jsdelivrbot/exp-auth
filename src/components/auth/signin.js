@@ -5,8 +5,8 @@ import * as actions from '../../actions';
 
 class SignIn extends Component {
   handleFormSubmit({ email, password }) {
-    //console.log(values);
-    this.props.signinUser({ email, password });
+    // values = { email: email, password: password } = { email, password }
+    this.props.signinUser({ email, password }, this.props.history);
   }
 
   renderTextInput({input, label, type}) {
@@ -19,7 +19,13 @@ class SignIn extends Component {
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { handleSubmit } = this.props;
+
+    /*if (this.props.authenticated) {
+      console.log(this);
+      this.props.history.push('/dashboard');
+    }*/
 
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
@@ -46,4 +52,10 @@ class SignIn extends Component {
 // adpting to work on redux form v6
 const signinForm = reduxForm({ form: 'signinForm' })(SignIn);
 
-export default connect (null, actions)(signinForm);
+function mapStateToProps(state) {
+  return {
+    authenticated: state.auth.authenticated
+  };
+}
+
+export default connect (mapStateToProps, actions)(signinForm);
