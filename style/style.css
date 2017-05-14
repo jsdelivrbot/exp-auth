@@ -14,3 +14,13 @@ a.selected {
   color: grey;
   font-weight: bold;
 }
+
+.form-msg-error {
+	display: none;
+	margin-top: .5rem;
+	font-size: .825rem;
+	color: red;
+}
+.form-msg-error.show {
+	display: block;
+}
