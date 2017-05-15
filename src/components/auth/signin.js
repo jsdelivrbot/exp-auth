@@ -4,9 +4,13 @@ import { reduxForm, Field } from 'redux-form';
 import * as actions from '../../actions';
 
 class SignIn extends Component {
-  handleFormSubmit({ email, password }) {
+  handleFormSubmit(values) {
     // values = { email: email, password: password } = { email, password }
-    this.props.signinUser({ email, password }, this.props.history);
+    this.props.signinUser({
+			email: values.email,
+			password: values.password,
+			history: this.props.history
+		});
   }
 
   renderTextInput({input, label, type}) {

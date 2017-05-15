@@ -6,8 +6,11 @@ import * as actions from '../../actions';
 class SignUp extends Component {
   handleFormSubmit(values) {
     // values = { email: email, password: password } = { email, password }
-		console.log(values);
-    //this.props.signinUser({ email, password }, this.props.history);
+    this.props.signupUser({
+			email: values.email,
+			password: values.password,
+			history: this.props.history
+		});
   }
 
   renderTextInput(field) {
@@ -36,7 +39,7 @@ class SignUp extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-console.log(this.props);
+
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <Field
