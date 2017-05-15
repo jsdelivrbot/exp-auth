@@ -8,6 +8,7 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 
 import Header from './components/header';
+import RequireAuth from './components/auth/require_auth';
 import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';
 import SignUp from './components/auth/signup';
@@ -24,9 +25,9 @@ ReactDOM.render(
           <Route path="/signin" component={SignIn} />
           <Route path="/signout" component={SignOut} />
 					<Route path="/signup" component={SignUp} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard" component={RequireAuth(Dashboard)} />
         </Switch>
       </div>
     </BrowserRouter>
-  </Provider>
-  , document.querySelector('.container'));
+  </Provider>,
+  document.querySelector('.container'));
